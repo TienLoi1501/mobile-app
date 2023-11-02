@@ -1,4 +1,3 @@
-
 apply plugin: 'com.diffplug.gradle.spotless'
 apply plugin: "de.undercouch.download"
 
@@ -17,7 +16,7 @@ task downloadFormatterProperties(type: Download) {
 }
 
 spotless {
-    java {
+    format 'java', {
         // This path needs to be relative to each project
         target fileTree('.') {
             include '**/src/*/java/**/*.java'
@@ -32,7 +31,7 @@ spotless {
         endWithNewline()
         licenseHeaderFile "$rootDir/gradle/spotless/java.license"
     }
-    kotlin {
+    format 'kotlin', {
         // This path needs to be relative to each project
         target fileTree('.') {
             include '**/*.kt'
@@ -44,7 +43,7 @@ spotless {
         endWithNewline()
         licenseHeaderFile "$rootDir/gradle/spotless/java.license"
     }
-    groovyGradle {
+    format 'groovy', {
         target '*.gradle'
         greclipse().configFile("$rootDir/gradle/spotless/formatter.properties")
         endWithNewline()
